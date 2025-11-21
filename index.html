@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rüyamı Çiz | Yapay Zeka Rüya Tabiri ve Görselleştirme</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-animate"></div>
+    <div class="stars"></div>
+
+    <div class="container">
+        <header>
+            <h1>Rüyamı Çiz</h1>
+            <p class="subtitle">Rüyanı anlat, yapay zeka hem yorumlasın hem resmini çizsin.</p>
+        </header>
+
+        <main>
+            <div class="input-area" id="inputSection">
+                <textarea id="dreamInput" placeholder="Dün gece ne gördün? Detaylıca anlat... (Örn: Gökyüzünde süzülen mor bir gemi gördüm, etrafımda bulutlar dans ediyordu)"></textarea>
+                <div class="button-wrapper">
+                    <button class="magic-button" onclick="interpretDream()">
+                        <span class="btn-text">Yorumla ve Çiz</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="loading-state" id="loadingSection">
+                <div class="crystal-ball-container">
+                    <div class="crystal-ball"></div>
+                    <div class="crystal-shadow"></div>
+                </div>
+                <p class="loading-text">Bilinçaltın taranıyor ve görselleştiriliyor...</p>
+            </div>
+
+            <div class="result-area" id="resultSection">
+                <div class="image-frame">
+                    <img id="dreamImg" class="dream-image" src="" alt="Rüya Görseli">
+                    <div class="image-overlay"></div>
+                </div>
+                
+                <div class="interpretation-card">
+                    <h2>Rüyanın Anlamı</h2>
+                    <div class="interpretation-text" id="dreamText"></div>
+                </div>
+                
+                <button class="retry-button" onclick="location.reload()">Başka Rüya Gör</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 RuyamiCiz.com | AI Powered Dream Interpretation</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
