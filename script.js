@@ -6,33 +6,33 @@ async function interpretDream() {
     const dreamText = document.getElementById('dreamText');
     const dreamImg = document.getElementById('dreamImg');
 
-    if (dreamInput.length < 10) {
-        alert("Lütfen rüyanı biraz daha detaylı anlat ki kahinler görebilsin...");
+    if (dreamInput.length < 5) {
+        alert("Lütfen bir rüya yazın.");
         return;
     }
 
-    // Animasyonları Başlat
     inputSection.style.display = 'none';
     loadingSection.style.display = 'block';
     resultSection.style.display = 'none';
 
     try {
-        // API İsteği
         const response = await fetch('/api/interpret', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ dream: dreamInput })
         });
 
-        if (!response.ok) throw new Error('Kahinler bağlantı kuramadı.');
-
         const data = await response.json();
 
-        // Sonuçları Yükle
+        if (!response.ok) {
+            // İŞTE BURASI: Gerçek hatayı ekrana yazdıracağız
+            throw new Error(data.message || data.error || "Sunucu Hatası");
+        }
+
         loadingSection.style.display = 'none';
         resultSection.style.display = 'block';
         
-        dreamText.innerHTML = data.interpretation; // HTML formatında metin
+        dreamText.innerHTML = data.interpretation;
         
         if (data.imageUrl) {
             dreamImg.src = data.imageUrl;
@@ -40,7 +40,9 @@ async function interpretDream() {
 
     } catch (error) {
         console.error(error);
-        alert("Bir hata oluştu: " + error.message);
+        // Hatayı kullanıcıya açıkça göster
+        alert("HATA DETAYI:\n" + error.message);
+        
         loadingSection.style.display = 'none';
         inputSection.style.display = 'block';
     }
